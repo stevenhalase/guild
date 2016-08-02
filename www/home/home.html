@@ -1,0 +1,17 @@
+<div class="home-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="news-container">
+        <h3 class="headline">HEADLINES</h3>
+        <div class="news-item col-md-12" ng-repeat="newsItem in hCtrl.newsItems" ng-style="{'background-image':'url({{newsItem.img}})'}">
+          <div class="news-content">
+            <h2 class="news-title">{{newsItem.title}}</h2>
+            <p class="news-story">
+              {{newsItem.story}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

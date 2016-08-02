@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="guildApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Guild Portal</title>
+  </head>
+  <body ng-controller="indexCtrl as iCtrl">
+
+    <div class="index-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="nav-wrapper col-md-12">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a ui-sref="home" href="#">HOME</a></li>
+                    <li><a ui-sref="news" href="#">NEWS</a></li>
+                    <li><a ui-sref="forums" href="#">FORUMS</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><button class="login-btn btn btn-default" ng-click="iCtrl.showSignIn = !iCtrl.showSignIn">SIGN IN</button></li>
+                    <li><button class="login-btn btn btn-default" ui-sref="registration">REGISTER</button></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+          </div>
+          <div class="row">
+            <div class="container-fluid">
+              <div class="login-section col-md-12" ng-class="{ closed : iCtrl.showSignIn }">
+                <form class="col-md-6 col-md-offset-6">
+                  <input id="email" name="email" type="text" placeholder="EMAIL" ng-model="iCtrl.loginEmail"></input>
+                  <input id="password" type="password" name="password" placeholder="PASSWORD" ng-model="iCtrl.loginPassword"></input>
+                  <button id="login-submit" class="login-submit btn btn btn-default" ng-click="iCtrl.login()">GO</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container-fluid">
+              <div class="logo-section col-md-10 col-md-offset-1">
+                <div class="col-md-4">
+                  <img class="team-logo" src="./images/team-logo.png" alt="">
+                </div>
+                <div class="sponsors col-md-8">
+                  <img class="sponsor" src="./images/ballistix.png">
+                  <img class="sponsor" src="./images/dxracer.png">
+                  <img class="sponsor" src="./images/netgear.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="view-wrapper col-md-10 col-md-offset-1">
+        <ui-view></ui-view>
+      </div>
+
+
+    </div>
+
+
+    <script src=".\lib\jquery\dist\jquery.min.js" charset="utf-8"></script>
+    <script src=".\lib\angular\angular.js" charset="utf-8"></script>
+    <script src=".\lib\angular-ui-router\release\angular-ui-router.min.js" charset="utf-8"></script>
+    <script src=".\lib\bootstrap\dist\js\bootstrap.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+    <script src="./home/home-controller.js" charset="utf-8"></script>
+    <script src="./registration/registration-controller.js" charset="utf-8"></script>
+    <link rel="stylesheet" href=".\lib\bootstrap\dist\css\bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="./home/home.css">
+    <link rel="stylesheet" href="./registration/registration.css">
+    <link rel="stylesheet" href="roboto-font.css">
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<div class="registration-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-container col-md-12">
+        <form>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">AVATAR URL</span>
+            <input class="form-control" type="text" id="registration-avatar" ng-model="rCtrl.img"></input>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">DISPLAY NAME</span>
+            <input class="form-control" type="text" id="registration-displayName" ng-model="rCtrl.displayName"></input>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">AGE</span>
+            <input class="form-control" type="text" id="registration-age" ng-model="rCtrl.age"></input>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">LOCATION</span>
+            <input class="form-control" type="text" id="registration-location" ng-model="rCtrl.location"></input>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">EMAIL ADDRESS</span>
+            <input class="form-control" type="text" id="registration-email" ng-model="rCtrl.email"></input>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">PASSWORD</span>
+            <input class="form-control" type="text" id="registration-password" ng-model="rCtrl.password"></input>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">PASSWORD CONFIRM</span>
+            <input class="form-control" type="text" id="registration-password-confirm" ng-model="rCtrl.passwordConfirm"></input>
+          </div>
+        </form>
+      </div>
+      <div class="profile-preview col-md-12">
+        <img class="preview-img" ng-src="{{rCtrl.img}}">
+        <h2 class="preview-name">{{rCtrl.displayName}}</h2>
+        <h3 class="preview-age">{{rCtrl.age}}</h3>
+        <p class="preview-location">{{rCtrl.location}}</p>
+        <p class="preview-email">{{rCtrl.email}}</p>
+        <button id="registration-submit" class="btn btn-default" ui-sref="home" ng-click="rCtrl.register()">SUBMIT</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "name": "guild",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Steven Halase <steven.halase@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "www/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "angular-ui-router": "^0.3.1"
+  }
+}

@@ -1,0 +1,76 @@
+.registration-wrapper {
+  background-color: #333;
+  color: white;
+}
+
+.form-container {
+  padding: 20px;
+}
+
+.input-group {
+  padding: 5px;
+}
+
+.input-group-addon {
+  border-radius: 0px;
+  font-weight: 800;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+.profile-preview {
+  text-align: center;
+}
+
+.preview-name {
+  color: #9bca05;
+  font-weight: 800;
+  font-size: 45px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.preview-age {
+  font-weight: 800;
+  display: inline-block;
+  padding: 5px;
+  vertical-align: super;
+}
+
+.preview-location {
+  font-weight: 800;
+  color: #ddd;
+}
+
+.preview-email {
+  font-weight: 800;
+  color: #ddd;
+}
+
+.preview-img {
+  margin: 0 auto;
+  display: block;
+  width: 250px;
+  border-radius: 50%;
+}
+
+#registration-submit {
+  font-weight: 800;
+  background-color: #9bca05;
+  border: 1px solid #555;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 0px;
+}
+
+#registration-submit:hover {
+  background-color: #9bca05;
+  border: 1px solid #555;
+}
+
+#registration-submit:focus {
+  background-color: #9bca05;
+  border: 1px solid #555;
+}
