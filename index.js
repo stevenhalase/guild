@@ -21,11 +21,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 ///// Serving static files from ./www
 app.use(express.static(path.join(__dirname, './www')))
-///// Route handler for homepage
-app.get('/', function (req, res) {
-  ///// Send homepage
-  res.sendFile('index.html', {root : './www'})
-});
 ///// Used to create user session
 const session = require('express-session')
 app.sessionMiddleware = session({
@@ -166,6 +161,11 @@ app.get('/logout', app.isAuthenticatedAjax, function(req, res){
   req.logout();
   ///// Redirect back to homepage
   res.redirect('/');
+});
+///// Route handler for homepage
+app.get('/', function (req, res) {
+  ///// Send homepage
+  res.sendFile('index.html', {root : './www'})
 });
 ///// Set up server listening port
 app.listen(port, function () {
