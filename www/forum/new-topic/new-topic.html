@@ -1,0 +1,36 @@
+<div class="new-topic-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="new-topic-container col-md-12">
+        <form>
+          <div class="row">
+            <div id="author-container" class="input-group col-md-12">
+              <h2>AUTHOR</h2><img class="new-topic-user-avatar" ng-src="{{ntCtrl.user.img}}"> <span class="new-topic-user-name">{{ntCtrl.user.name}}</span>
+            </div>
+            <div class="checkbox pull-left">
+              <label>
+                <input type="checkbox" id="new-topic-type-select" ng-model="ntCtrl.newTopic.pinned"> Sticky
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group col-md-12">
+              <input class="form-control" type="text" id="new-topic-title" placeholder="TITLE" ng-model="ntCtrl.newTopic.title"></input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group col-md-12">
+              <textarea class="form-control" rows="3" wrap="soft" id="new-topic-message" placeholder="MESSAGE CONTENT" ng-model="ntCtrl.newTopic.message"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button id="registration-submit" class="btn btn-default" ui-sref="forum" ng-click="ntCtrl.submitNewTopic()">SUBMIT</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

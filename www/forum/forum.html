@@ -24,25 +24,25 @@
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control" type="text" id="forum-search" placeholder="Search" ng-model="rCtrl.forumSearch"></input>
-                    <button class="new-topic-btn btn btn-default">NEW TOPIC</button>
+                    <button class="new-topic-btn btn btn-default" ui-sref="new-topic({ section: fCtrl.currentSection._id })">NEW TOPIC</button>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="thread-list list-group">
                   <ul class="thread-ul">
-                    <li class="list-group-item" ng-repeat="thread in fCtrl.forum.threadCategories[0].threadSections[0].threads track by $index">
+                    <li class="list-group-item" ng-repeat="thread in fCtrl.forum.threadCategories[0].threadSections[0].threads | orderBy:'pinned' track by $index  ">
                       <div class="col-md-6">
-                        <p class="thread-title">{{thread.title}}</p>
+                        <p class="thread-title"><i class="inline-icon material-icons" ng-if="thread.pinned">bookmark</i> <i class="inline-icon material-icons" ng-if="!thread.pinned">chat</i> {{thread.title}}</p>
                       </div>
                       <div class="col-md-2">
-                        <p>{{thread.replies}}</p>
+                        <p><i class="inline-icon material-icons">comment</i> {{thread.replies}}</p>
                       </div>
                       <div class="col-md-2">
                         <p>{{thread.author.name}}</p>
                       </div>
                       <div class="col-md-2">
-                        <p>{{thread.date}}</p>
+                        <p>{{thread.date | date :  "MM/dd/y"}}</p>
                       </div>
                     </li>
                   </ul>

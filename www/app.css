@@ -159,3 +159,8 @@ body {
   width: 150px;
   padding: 10px;
 }
+
+.inline-icon {
+  vertical-align: text-bottom;
+  color: #9bca05;
+}

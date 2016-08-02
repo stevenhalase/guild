@@ -21,6 +21,11 @@ angular.module('guildApp', ['ui.router'])
         templateUrl: './forum/forum.html',
         controller : 'forumCtrl as fCtrl'
       })
+      .state('new-topic', {
+        url : '/new-topic/:section',
+        templateUrl: './forum/new-topic/new-topic.html',
+        controller : 'newTopicCtrl as ntCtrl'
+      })
 
     $urlRouterProvider.otherwise('/');
   }

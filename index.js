@@ -145,11 +145,12 @@ app.get('/api/me', app.isAuthenticatedAjax, function(req, res){
 })
 app.post('/api/forum', function(req, res){
   console.log('Here')
-  console.log(req.body.data)
+  console.log(req.body.data, req.body.data._id)
   let newForum = new Forum(req.body.data);
-  newForum.save(function(saveErr, forum){
+  Forum.findOneAndUpdate({ _id : req.body.data._id }, newForum, {upsert: true, new: true}, function(saveErr, forum){
       if ( saveErr ) { res.send({ err:saveErr }) }
       else {
+          console.log('sending back: ', forum)
           res.send(forum);
       }
   })
