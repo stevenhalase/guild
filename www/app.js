@@ -16,6 +16,11 @@ angular.module('guildApp', ['ui.router'])
         templateUrl: './registration/registration.html',
         controller : 'registrationCtrl as rCtrl'
       })
+      .state('forum', {
+        url : '/forum',
+        templateUrl: './forum/forum.html',
+        controller : 'forumCtrl as fCtrl'
+      })
 
     $urlRouterProvider.otherwise('/');
   }
@@ -23,12 +28,23 @@ angular.module('guildApp', ['ui.router'])
 angular.module('guildApp')
   .controller('indexCtrl', indexController)
 
-  indexController.$inject = ['$http'];
+  indexController.$inject = ['$http', 'userFactory'];
 
-  function indexController ($http) {
+  function indexController ($http, userFactory) {
     const iCtrl = this;
     iCtrl.title = 'Index Controller';
     iCtrl.showSignIn = true;
+    iCtrl.userLoggedIn = false;
+    userFactory.getUser()
+      .then(function(response) {
+        console.log(response);
+        iCtrl.user = response.data.user;
+        console.log('email', iCtrl.user.email)
+        if (iCtrl.user.email) {
+          iCtrl.userLoggedIn = true;
+          iCtrl.showSignIn = true;
+        }
+      });
 
     iCtrl.login = function () {
       $http({
@@ -38,8 +54,27 @@ angular.module('guildApp')
           email: iCtrl.loginEmail,
           password: iCtrl.loginPassword
         }
-      }, function(response) {
-        console.log(response);
       })
+      .then(function(response) {
+        console.log(response);
+        userFactory.getUser()
+          .then(function(response) {
+            console.log(response);
+            iCtrl.user = response.data.user;
+            console.log('email', iCtrl.user.email)
+            if (iCtrl.user.email) {
+              iCtrl.userLoggedIn = true;
+              iCtrl.showSignIn = true;
+            }
+          });
+      })
+    }
+
+    iCtrl.logout = function () {
+      $http.get('/logout')
+        .then(function(response) {
+          iCtrl.userLoggedIn = false;
+          iCtrl.showSignIn = true;
+        })
     }
   }

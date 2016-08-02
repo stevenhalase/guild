@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const User = require('./user-model');
+const Forum = require('./forum-model');
 const passport = require('passport');
 const request = require('request');
 const logger = require('morgan');
@@ -47,11 +48,11 @@ mongoose.connect(uristring, function(error) {
   }
 })
 
-const LocalStrategy = require('passport-local').Strategy;
 
 app.use(passport.initialize()); // Tells server that we want to use passport.  Gives passport access to what's going on in our server
 app.use(passport.session());  // Sessions are how our servers remember who we are - so we give passport access to them.  Passport will automatically store / retrieve data from our sessions for us
 
+const LocalStrategy = require('passport-local').Strategy;
 // cookies are strings. strings are "SERIAL" data.
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -66,7 +67,10 @@ passport.deserializeUser(function(id, done) {
 const bcrypt = require('bcryptjs')
 // the user will POST to /login, with req.body.username and req.body.password
 // by default, passport looks at req.body.username / req.body.password
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({ // or whatever you want to use
+    usernameField: 'email',    // define the parameter in req.body that passport can use as username and password
+    passwordField: 'password'
+  },
     function(email, password, done) {
         User.findOne({ email: email }, function (err, user) {
             if (err) { return done(err); }
@@ -87,19 +91,18 @@ passport.use(new LocalStrategy(
 ));
 /** End Passport Config **/
 /** Middleware **/
-app.isAuthenticated = function(req, res, next){
+app.isAuthenticatedAjax = function(req, res, next){
     // If the current user is logged in...
     if(req.isAuthenticated()){
     // Middleware allows the execution chain to continue.
         return next();
     }
     // If not, redirect to login
-    console.log('get outta here!')
-    res.redirect('/');
+    res.send({error:'not logged in'});
 }
 /** END Middleware **/
 app.post('/register', function(req, res){
-    console.log('Body : ', req.body);
+    console.log('Register Body : ', req.body);
     bcrypt.genSalt(11, function(error, salt){
         bcrypt.hash(req.body.password, salt, function(hashError, hash){
             let newUser = new User({
@@ -107,7 +110,8 @@ app.post('/register', function(req, res){
                 password: hash,
                 name: req.body.name,
                 age: req.body.age,
-                location: req.body.location
+                location: req.body.location,
+                img: req.body.img
             });
             newUser.save(function(saveErr, user){
                 if ( saveErr ) { res.send({ err:saveErr }) }
@@ -122,17 +126,46 @@ app.post('/register', function(req, res){
     })
 })
 app.post('/login', function(req, res, next){
-    console.log('Body : ', req.body);
+    console.log('Login Body : ', req.body);
     //function being passed into authenticate method as the 2nd argument is the done function from the LocalStrategy
     passport.authenticate('local', function(err, user, info) {
+      // console.log(err);
+      console.log('User : ', user);
         if (err) { return next(err); }
         if (!user) { return res.send({error : 'something went wrong :('}); }
         req.logIn(user, function(err) {
+            console.log('Login : ', user)
             if (err) { return next(err); }
             return res.send({success:'success'});
         });
     })(req, res, next);
 })
+app.get('/api/me', app.isAuthenticatedAjax, function(req, res){
+    res.send({user:req.user})
+})
+app.post('/api/forum', function(req, res){
+  console.log('Here')
+  console.log(req.body.data)
+  let newForum = new Forum(req.body.data);
+  newForum.save(function(saveErr, forum){
+      if ( saveErr ) { res.send({ err:saveErr }) }
+      else {
+          res.send(forum);
+      }
+  })
+})
+app.get('/api/forum', function(req, res){
+  Forum.find({}, function(error, forum) {
+    res.send({ forum: forum });
+  })
+})
+///// Route to logout user
+app.get('/logout', app.isAuthenticatedAjax, function(req, res){
+  ///// Logout user
+  req.logout();
+  ///// Redirect back to homepage
+  res.redirect('/');
+});
 ///// Set up server listening port
 app.listen(port, function () {
     console.log('Server started at http://localhost:' + port)

@@ -1,0 +1,59 @@
+<div class="forum-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="forum-container col-md-12">
+        <div ng-if="fCtrl.showingCategories" class="forum-category col-md-12" ng-repeat="category in fCtrl.forum.threadCategories track by $index">
+          <h3>{{category.title}}</h3>
+          <div class="forum-section col-md-6" ng-repeat="section in category.threadSections track by $index" ng-click="fCtrl.selectSection(section)">
+            <div class="col-md-4">
+              <img ng-src="{{section.image}}" class="forum-section-image">
+            </div>
+            <div class="col-md-8">
+              <h4>{{section.title}}</h4>
+              <p>{{section.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div ng-if="fCtrl.showingSection" class="forum-section-view">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-8">
+                  <img ng-src="{{fCtrl.currentSection.image}}" class="current-section-image"><span class="current-section-title">{{fCtrl.currentSection.title}}</span>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control" type="text" id="forum-search" placeholder="Search" ng-model="rCtrl.forumSearch"></input>
+                    <button class="new-topic-btn btn btn-default">NEW TOPIC</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="thread-list list-group">
+                  <ul class="thread-ul">
+                    <li class="list-group-item" ng-repeat="thread in fCtrl.forum.threadCategories[0].threadSections[0].threads track by $index">
+                      <div class="col-md-6">
+                        <p class="thread-title">{{thread.title}}</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p>{{thread.replies}}</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p>{{thread.author.name}}</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p>{{thread.date}}</p>
+                      </div>
+                    </li>
+                  </ul>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

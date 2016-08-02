@@ -1,3 +1,4 @@
+'use strict'
 angular.module('guildApp')
   .controller('registrationCtrl', registrationController)
 
@@ -16,7 +17,8 @@ angular.module('guildApp')
           email: rCtrl.email,
           password: rCtrl.password,
           age: rCtrl.age,
-          location: rCtrl.location
+          location: rCtrl.location,
+          img: rCtrl.img
         }
       }, function(response) {
         console.log(response);

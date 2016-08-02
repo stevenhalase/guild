@@ -27,11 +27,13 @@
                   <ul class="nav navbar-nav navbar-left">
                     <li class="active"><a ui-sref="home" href="#">HOME</a></li>
                     <li><a ui-sref="news" href="#">NEWS</a></li>
-                    <li><a ui-sref="forums" href="#">FORUMS</a></li>
+                    <li><a ui-sref="forum" href="#">FORUM</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                    <li><button class="login-btn btn btn-default" ng-click="iCtrl.showSignIn = !iCtrl.showSignIn">SIGN IN</button></li>
-                    <li><button class="login-btn btn btn-default" ui-sref="registration">REGISTER</button></li>
+                    <li ng-show="iCtrl.userLoggedIn"><img class="user-avatar" ng-src="{{iCtrl.user.img}}"> <span class="user-name">{{iCtrl.user.name}}</span>
+                    <li ng-show="iCtrl.userLoggedIn"><button class="logout-btn btn btn-default" ng-click="iCtrl.logout()">SIGN OUT</button></li>
+                    <li ng-show="!iCtrl.userLoggedIn"><button class="login-btn btn btn-default" ng-click="iCtrl.showSignIn = !iCtrl.showSignIn">SIGN IN</button></li>
+                    <li ng-show="!iCtrl.userLoggedIn"><button class="login-btn btn btn-default" ui-sref="registration">REGISTER</button></li>
                   </ul>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
@@ -80,12 +82,16 @@
     <script src=".\lib\angular-ui-router\release\angular-ui-router.min.js" charset="utf-8"></script>
     <script src=".\lib\bootstrap\dist\js\bootstrap.min.js" charset="utf-8"></script>
     <script src="app.js" charset="utf-8"></script>
+    <script src="user-factory.js" charset="utf-8"></script>
+    <script src="forum-factory.js" charset="utf-8"></script>
     <script src="./home/home-controller.js" charset="utf-8"></script>
     <script src="./registration/registration-controller.js" charset="utf-8"></script>
+    <script src="./forum/forum-controller.js" charset="utf-8"></script>
     <link rel="stylesheet" href=".\lib\bootstrap\dist\css\bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="./home/home.css">
     <link rel="stylesheet" href="./registration/registration.css">
+    <link rel="stylesheet" href="./forum/forum.css">
     <link rel="stylesheet" href="roboto-font.css">
   </body>
 </html>
