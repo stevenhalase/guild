@@ -32,6 +32,12 @@ angular.module('guildApp')
       fCtrl.showingTopic = true;
     }
 
+    fCtrl.goBackToSection = function () {
+      fCtrl.showingCategories = false;
+      fCtrl.showingSection = true;
+      fCtrl.showingTopic = false;
+    }
+
 
 
     // fCtrl.thread = {

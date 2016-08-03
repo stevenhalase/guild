@@ -54,6 +54,9 @@
         <div ng-if="fCtrl.showingTopic" class="forum-topic col-md-12">
           <div class="row">
             <div class="col-md-8">
+              <div>
+                <a href="" ng-click="fCtrl.goBackToSection()"><i class="back-arrow material-icons">arrow_back</i></a>
+              </div>
               <i class="inline-icon material-icons" ng-if="thread.pinned">bookmark</i> <i class="inline-icon material-icons" ng-if="!thread.pinned">chat</i> <span class="current-topic-title">{{fCtrl.currentTopic.title}}</span><br/>
               <img class="current-topic-author-img" ng-src="{{fCtrl.currentTopic.author.img}}"><h3 class="current-topic-author">{{fCtrl.currentTopic.author.name}}</h3>
             </div>
