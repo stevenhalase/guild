@@ -25,11 +25,16 @@
           </div>
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">PASSWORD</span>
-            <input class="form-control" type="text" id="registration-password" ng-model="rCtrl.password"></input>
+            <input class="form-control" type="{{rCtrl.showPassword}}" id="registration-password" ng-model="rCtrl.password"></input>
           </div>
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">PASSWORD CONFIRM</span>
-            <input class="form-control" type="text" id="registration-password-confirm" ng-model="rCtrl.passwordConfirm"></input>
+            <input class="form-control" type="{{rCtrl.showPassword}}" id="registration-password-confirm" ng-model="rCtrl.passwordConfirm"></input>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" id="show-password-select" ng-click="rCtrl.togglePassword()"> Show Password
+            </label>
           </div>
         </form>
       </div>

@@ -8,6 +8,16 @@ angular.module('guildApp')
     const rCtrl = this;
     rCtrl.title = 'Registration Controller';
 
+    rCtrl.showPassword = 'password';
+
+    rCtrl.togglePassword = function () {
+      if (rCtrl.showPassword === 'password') {
+        rCtrl.showPassword = 'text';
+      } else {
+        rCtrl.showPassword = 'password';
+      }
+    };
+
     rCtrl.register = function () {
       $http({
         url: '/register',
