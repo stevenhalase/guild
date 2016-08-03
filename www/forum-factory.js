@@ -15,12 +15,17 @@ angular.module('guildApp')
     }
 
     function getSection(id) {
-      return $http.get('/api/forum' + id);
+      return $http.get('/api/forum/' + id)
+    }
+
+    function saveSection(id, newTopic) {
+      return $http.post('/api/forum/' + id, { data: newTopic });
     }
 
     return {
       getForum : getForum,
       saveForum : saveForum,
-      getSection : getSection
+      getSection : getSection,
+      saveSection : saveSection
     };
   }

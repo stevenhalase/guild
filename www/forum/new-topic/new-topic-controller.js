@@ -49,6 +49,21 @@ angular.module('guildApp')
 
     }
 
+    // ntCtrl.submitNewTopic = function () {
+    //   ntCtrl.newTopic.author = ntCtrl.user;
+    //   ntCtrl.newTopic.date = new Date();
+    //   ntCtrl.newTopic.replies = 0;
+    //   console.log('New Topic: ', ntCtrl.newTopic)
+    //   console.log('Forum: ', ntCtrl.forum)
+    //   console.log('Section: ', ntCtrl.currentSectionID);
+    //
+    //   forumFactory.saveSection(ntCtrl.currentSectionID, ntCtrl.newTopic)
+    //     .then(function(response) {
+    //       console.log('Section save response: ', response)
+    //     })
+    //
+    // }
+
     // let width = $("#new-topic-title").parent().parent().width() - 35;
     // $("#new-topic-title").width(width);
     // $("#new-topic-message").width(width);

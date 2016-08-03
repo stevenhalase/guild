@@ -34,6 +34,13 @@
   font-weight: 800;
 }
 
+.current-topic-title {
+  vertical-align: middle;
+  font-size: 30px;
+  padding: 10px;
+  font-weight: 800;
+}
+
 #forum-search {
   background-color: black;
   border: 1px solid #9bca05;
@@ -82,4 +89,22 @@
 .thread-title {
   color: white;
   font-weight: 800;
+}
+
+.current-topic-body {
+  padding: 25px;
+  background-color: rgba(0,0,0,0.4);
+  margin-top: 20px;
+}
+
+.current-topic-author-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.current-topic-author {
+  display: inline-block;
+  padding: 10px;
+  vertical-align: middle;
 }

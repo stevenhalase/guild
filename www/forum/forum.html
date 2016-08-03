@@ -31,7 +31,7 @@
               <div class="row">
                 <div class="thread-list list-group">
                   <ul class="thread-ul">
-                    <li class="list-group-item" ng-repeat="thread in fCtrl.forum.threadCategories[0].threadSections[0].threads | orderBy:'pinned' track by $index  ">
+                    <li class="list-group-item" ng-click="fCtrl.selectTopic(thread)" ng-repeat="thread in fCtrl.forum.threadCategories[0].threadSections[0].threads | orderBy:'pinned' track by $index">
                       <div class="col-md-6">
                         <p class="thread-title"><i class="inline-icon material-icons" ng-if="thread.pinned">bookmark</i> <i class="inline-icon material-icons" ng-if="!thread.pinned">chat</i> {{thread.title}}</p>
                       </div>
@@ -46,10 +46,27 @@
                       </div>
                     </li>
                   </ul>
-
-
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="fCtrl.showingTopic" class="forum-topic col-md-12">
+          <div class="row">
+            <div class="col-md-8">
+              <i class="inline-icon material-icons" ng-if="thread.pinned">bookmark</i> <i class="inline-icon material-icons" ng-if="!thread.pinned">chat</i> <span class="current-topic-title">{{fCtrl.currentTopic.title}}</span><br/>
+              <img class="current-topic-author-img" ng-src="{{fCtrl.currentTopic.author.img}}"><h3 class="current-topic-author">{{fCtrl.currentTopic.author.name}}</h3>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control" type="text" id="forum-search" placeholder="Search" ng-model="rCtrl.forumSearch"></input>
+                <button class="new-topic-btn btn btn-default" ui-sref="/">REPLY</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="current-topic-body"> {{fCtrl.currentTopic.message}} </p>
             </div>
           </div>
         </div>
