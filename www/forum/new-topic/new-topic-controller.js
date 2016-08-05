@@ -42,9 +42,9 @@ angular.module('guildApp')
 
     }
 
-    nCtrl.submitNewReply = function () {
-      
-    }
+    // ntCtrl.submitNewReply = function () {
+    //
+    // }
 
 
   }

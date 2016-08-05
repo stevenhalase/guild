@@ -22,8 +22,8 @@ let date = '' + day + '/' + (month + 1) + '/' + year;
 let comment = {
   title: 'My reply to your comment',
   author: {
-    name: 'Killary Drumpf',
-    img: 'http://www.fullredneck.com/wp-content/uploads/2016/05/Hillary-Clinton-Meme-12.png',
+    name: 'Super Admin',
+    img: 'http://images.mmosite.com/news/2010/12/31/wow_avatar/wow_avatar_03.jpg',
   },
   date: date,
   message: 'I really do not like this thread very much. I only like great threads. Only the best threads.'
@@ -31,8 +31,8 @@ let comment = {
 let thread = {
   title: 'Welcome, Please Read',
   author: {
-    name: 'Killary Drumpf',
-    img: 'http://www.fullredneck.com/wp-content/uploads/2016/05/Hillary-Clinton-Meme-12.png',
+    name: 'Super Admin',
+    img: 'http://images.mmosite.com/news/2010/12/31/wow_avatar/wow_avatar_03.jpg',
   },
   comments: [comment],
   date: date,
