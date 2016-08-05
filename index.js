@@ -138,26 +138,42 @@ app.post('/login', function(req, res, next){
 app.get('/api/me', app.isAuthenticatedAjax, function(req, res){
     res.send({user:req.user})
 })
-// app.post('/api/forum/:id', function(req, res){
-//   console.log('Here Saving Topic')
-//   console.log('Data: ', req.body.data, 'Params: ', req.params.id)
-//   Forum.findOne({ 'threadCategories.threadSections._id' : req.params.id}, function(err, forum) {
-//     let section = forum.threadCategories[0].threadSections.id(req.params.id);
-//     section.threads.push(req.body.data);
-//     section.save()
-//     console.log('SECTION: ', section)
-//     console.log('Found forum: ', forum.threadCategories[0].threadSections.id(req.params.id));
-//     res.send(forum);
-//   })
-//
-// });
+app.post('/api/forum/thread/:id', (req, res) => {
+    console.log('Here Saving Topic');
+    console.log('Data: ', req.body.data, 'Params: ', req.params.id);
+
+    Forum.findOne({
+        'threadCategories.threadSections._id' : req.params.id
+    }, function (err1, forum) {
+      console.log('Found Forum: ', forum)
+        let section = forum.threadCategories[0].threadSections.id(req.params.id)
+        section.threads.push(req.body.data);
+
+        if( err1 ) {
+            return res.status(500).send({ message: 'Fuck' });
+        }
+
+        if ( !forum ) {
+            return res.status(404).send({ message: 'Nope' })
+        }
+
+        forum.save(function (err2, result) {
+          console.log('Error saving: ', err2, 'Result: ', result)
+            res.status( err2? 500:200 )
+                .send( result? result:err2 );
+        })
+    })
+});
 app.post('/api/forum', function(req, res){
   console.log('Here Saving Forum')
-  console.log(req.body.data, req.body.data._id)
-  Forum.findOneAndUpdate({ _id : req.body.data._id }, req.body.data, {upsert: true, new: true}, function(saveErr, forum){
-      if ( saveErr ) { res.send({ err:saveErr }) }
+  let newForum = new Forum(req.body.data);
+  newForum.save(function(saveErr, forum){
+      if ( saveErr ) {
+        console.log('Error saving Forum: ', saveErr)
+         res.send({ err:saveErr })
+       }
       else {
-        console.log('sending back: ', forum)
+        console.log('sending back forum: ', forum)
         res.send(forum);
       }
   })

@@ -35,10 +35,15 @@
 }
 
 .current-topic-title {
-  vertical-align: middle;
-  font-size: 30px;
+  vertical-align: super;
+  font-size: 35px;
   padding: 10px;
   font-weight: 800;
+}
+
+.inline-icon.material-icons.topic-icon {
+  padding-left: 10px;
+  font-size: 40px;
 }
 
 #forum-search {
@@ -98,8 +103,9 @@
 }
 
 .current-topic-author-img {
-  width: 50px;
-  height: 50px;
+  margin-top: 10px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
 }
 
@@ -107,6 +113,12 @@
   display: inline-block;
   padding: 10px;
   vertical-align: middle;
+}
+
+.current-topic-comment-body {
+  padding: 25px;
+  background-color: rgba(0,0,0,0.4);
+  margin-top: 20px;
 }
 
 .forum-topic .back-arrow {
@@ -117,4 +129,8 @@
   border-radius: 50%;
   padding: 5px;
   margin-bottom: 10px;
+}
+
+.reply-divider {
+  border-top: 1px solid #727272;
 }

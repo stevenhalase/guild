@@ -19,7 +19,7 @@ angular.module('guildApp')
     }
 
     function saveSection(id, newTopic) {
-      return $http.post('/api/forum/' + id, { data: newTopic });
+      return $http.post('/api/forum/thread/' + id, { data: newTopic });
     }
 
     return {

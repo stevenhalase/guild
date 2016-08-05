@@ -1,11 +1,18 @@
 'use strict'
 const mongoose = require('mongoose');
 
+const commentSchema = mongoose.Schema({
+  title: { type: String },
+  author: { type: Object },
+  date: { type: String },
+  message: { type: String }
+})
+
 const threadSchema = mongoose.Schema({
   title: { type: String },
   author: { type: Object },
   date: { type: String },
-  replies: { type: Number },
+  comments: [commentSchema],
   type: { type: String },
   pinned: { type: Boolean },
   message: { type: String }

@@ -36,7 +36,7 @@
                         <p class="thread-title"><i class="inline-icon material-icons" ng-if="thread.pinned">bookmark</i> <i class="inline-icon material-icons" ng-if="!thread.pinned">chat</i> {{thread.title}}</p>
                       </div>
                       <div class="col-md-2">
-                        <p><i class="inline-icon material-icons">comment</i> {{thread.replies}}</p>
+                        <p><i class="inline-icon material-icons">comment</i> {{thread.comments.length}}</p>
                       </div>
                       <div class="col-md-2">
                         <p>{{thread.author.name}}</p>
@@ -54,11 +54,10 @@
         <div ng-if="fCtrl.showingTopic" class="forum-topic col-md-12">
           <div class="row">
             <div class="col-md-8">
-              <div>
-                <a href="" ng-click="fCtrl.goBackToSection()"><i class="back-arrow material-icons">arrow_back</i></a>
-              </div>
-              <i class="inline-icon material-icons" ng-if="thread.pinned">bookmark</i> <i class="inline-icon material-icons" ng-if="!thread.pinned">chat</i> <span class="current-topic-title">{{fCtrl.currentTopic.title}}</span><br/>
-              <img class="current-topic-author-img" ng-src="{{fCtrl.currentTopic.author.img}}"><h3 class="current-topic-author">{{fCtrl.currentTopic.author.name}}</h3>
+              <a href="" ng-click="fCtrl.goBackToSection()"><i class="back-arrow material-icons">arrow_back</i></a>
+              <i class="inline-icon material-icons topic-icon" ng-if="thread.pinned">bookmark</i> <i class="inline-icon material-icons topic-icon" ng-if="!thread.pinned">chat</i> <span class="current-topic-title">{{fCtrl.currentTopic.title}}</span><br/>
+              <img class="current-topic-author-img" ng-src="{{fCtrl.currentTopic.author.img}}">
+              <h3 class="current-topic-author">{{fCtrl.currentTopic.author.name}}</h3>
             </div>
             <div class="col-md-4">
               <div class="input-group">
@@ -70,6 +69,16 @@
           <div class="row">
             <div class="col-md-12">
               <p class="current-topic-body"> {{fCtrl.currentTopic.message}} </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" ng-repeat="comment in fCtrl.currentTopic.comments">
+              <hr class="reply-divider" />
+              <img class="current-topic-author-img" ng-src="{{comment.author.img}}">
+              <h3 class="current-topic-author">{{comment.author.name}}</h3>
+              <div class="current-topic-comment-body">
+                <p class="comment-author-message">{{comment.message}}</p>
+              </div>
             </div>
           </div>
         </div>
