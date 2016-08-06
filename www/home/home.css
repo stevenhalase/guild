@@ -1,14 +1,16 @@
 .home-wrapper {
-  background-color: #333;
   color: white;
   padding: 20px;
 }
 
 .news-container {
+  border-left: 2px solid #9bca05;
+  background-color: #333;
   padding: 20px;
 }
 
 .news-item {
+  cursor: pointer;
   padding: 0px;
   height: 175px;
   background-size: 100%;
@@ -21,7 +23,7 @@
 }
 
 .news-item:hover {
-  background-size: 110%;
+  background-size: 105%;
 }
 
 .news-content {
@@ -44,4 +46,97 @@
   padding-left: 5px;
   font-size: 16px;
   font-weight: 900;
+}
+
+.progress-container {
+  border-left: 2px solid #9bca05;
+  background-color: #333;
+  padding: 20px;
+}
+
+.raid {
+  cursor: pointer;
+  height: 50vh;
+  background-position: center;
+  background-size: 200%;
+  border-bottom: 2px solid #9bca05;
+  -webkit-transition: background-size 0.5s ease;
+  -moz-transition: background-size 0.5s ease;
+  -o-transition: background-size 0.5s ease;
+  transition: background-size 0.5s ease;
+}
+
+.raid:hover {
+  background-size: 210%;
+}
+
+.raid-content {
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.raid-title {
+  position: relative;
+  bottom: -75%;
+  margin: 10px;
+}
+
+.raid-progress {
+  position: relative;
+  bottom: -75%;
+  margin: 10px;
+}
+
+.raid-modal-content {
+  background-position: center;
+  background-size: cover;
+  background-color: #333;
+  border: 0;
+  border-radius: 0;
+}
+
+.raid-modal-inner-content {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.raid-modal-title {
+  color: #9bca05;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.raid-boss-table {
+  width: 100%;
+}
+
+.raid-modal-header {
+  border-bottom: 0;
+}
+
+.raid-modal-footer {
+  border-top: 0;
+}
+
+.boss-col {
+  width: 50%;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.alive-col {
+  font-weight: 700;
+  font-size: 25px;
+  width: 50%;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.close {
+  color: #9bca05;
 }

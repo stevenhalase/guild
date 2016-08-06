@@ -1,7 +1,7 @@
 <div class="home-wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="news-container">
+      <div class="news-container col-md-9">
         <h3 class="headline">HEADLINES</h3>
         <div class="news-item col-md-12" ng-repeat="newsItem in hCtrl.newsItems" ng-style="{'background-image':'url({{newsItem.img}})'}">
           <div class="news-content">
@@ -10,6 +10,45 @@
               {{newsItem.story}}
             </p>
           </div>
+        </div>
+      </div>
+      <div class="progress-container col-md-3">
+        <h3 class="headline">RAID PROGRESS</h3>
+        <div class="raid" ng-repeat="raid in hCtrl.raids" ng-style="{'background-image':'url({{raid.img}})'}" ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-click="hCtrl.openRaidDetails(raid.id)">
+          <div class="raid-content">
+            <h4 class="raid-title">{{raid.title}}</h4>
+            <div class="progress raid-progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{raid.progress}}%" aria-valuemin="0" aria-valuemax="100" style="width: {{raid.progress}}%" ng-class="{active: hover}">
+                {{raid.progress}}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="raidModal{{raid.id}}" tabindex="-1" role="dialog" ng-repeat="raid in hCtrl.raids">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content raid-modal-content" ng-style="{'background-image':'url({{raid.img}})'}">
+      <div class="raid-modal-inner-content">
+        <div class="modal-header raid-modal-header">
+          <h4 class="modal-title raid-modal-title" id="myModalLabel">{{raid.title}}</h4>
+        </div>
+        <div class="modal-body">
+          <table class="raid-boss-table text-center">
+            <tbody>
+              <tr ng-repeat="boss in raid.bosses">
+                <td class="boss-col">{{boss.name}}</td><td class="alive-col"><span ng-if="boss.alive" class="glyphicon glyphicon-eye-open green"></span><span ng-if="!boss.alive" class="glyphicon glyphicon-eye-close red"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer raid-modal-footer">
+          <button type="button" class="btn btn-default logout-btn" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
